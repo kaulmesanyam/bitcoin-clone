@@ -63,13 +63,18 @@ A block needs:
 ### Step 1: Hash Function
 Create a function that takes data and returns SHA-256 hash.
 
-**Python hint**: Use `hashlib.sha256()`
+**Rust hint**: Use the `sha2` crate with `Sha256` trait
+```rust
+use sha2::{Sha256, Digest};
+```
 
 ### Step 2: Block Structure
-Create a Block class with:
-- Fields: index, previous_hash, timestamp, data
-- Method to calculate its own hash
-- Method to convert to string/dict (for display)
+Create a Block struct with:
+- Fields: index (u64), previous_hash (String), timestamp (u64 or SystemTime), data (String)
+- Method to calculate its own hash (impl block)
+- Method to convert to string (Display trait or Debug)
+
+**Rust concepts**: Structs, impl blocks, ownership
 
 ### Step 3: Link Blocks
 Create multiple blocks where each block's `previous_hash` is the hash of the previous block.

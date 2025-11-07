@@ -35,10 +35,12 @@ This roadmap will guide you through building a Bitcoin-like blockchain from scra
 - Difficulty adjustment basics
 
 ### What to Build:
-- Blockchain class (add blocks, validate chain)
+- Blockchain struct/impl (add blocks, validate chain)
 - Genesis block creation
 - Chain integrity checks
 - Simple proof of work (find hash with N leading zeros)
+
+**Rust Concepts**: Structs, impl blocks, ownership, borrowing
 
 ---
 
@@ -52,10 +54,12 @@ This roadmap will guide you through building a Bitcoin-like blockchain from scra
 - Double-spend problem
 
 ### What to Build:
-- Transaction class (inputs, outputs, amounts)
+- Transaction struct (inputs, outputs, amounts)
 - Transaction signing (start with simple validation)
 - Transaction verification
 - Store transactions in blocks
+
+**Rust Concepts**: Enums, Vec, serialization (serde)
 
 ---
 
@@ -69,11 +73,13 @@ This roadmap will guide you through building a Bitcoin-like blockchain from scra
 - Digital signatures
 
 ### What to Build:
-- Key pair generation
+- Key pair generation (using `secp256k1` crate)
 - Transaction signing with private key
 - Signature verification with public key
-- Address generation from public key
-- Wallet class (create, sign transactions)
+- Address generation from public key (Base58 encoding)
+- Wallet struct (create, sign transactions)
+
+**Rust Concepts**: External crates, error handling (Result), traits
 
 ---
 
@@ -139,10 +145,12 @@ This roadmap will guide you through building a Bitcoin-like blockchain from scra
 - Network protocols
 
 ### What to Build:
-- Simple node class
+- Node struct (using async/await with Tokio)
 - Block broadcasting (simulation)
 - Transaction broadcasting
 - Chain synchronization
+
+**Rust Concepts**: Async/await, Tokio, networking (TCP/UDP)
 
 ---
 
@@ -157,10 +165,12 @@ This roadmap will guide you through building a Bitcoin-like blockchain from scra
 - Script interpreter basics
 
 ### What to Build:
-- Database integration (SQLite/JSON files)
-- Mempool management
+- Database integration (SQLite with `rusqlite` or `sled`)
+- Mempool management (HashMap/BTreeMap)
 - Transaction fees
 - Block size validation
+
+**Rust Concepts**: Database APIs, collections, error handling
 
 ---
 
@@ -183,21 +193,43 @@ This roadmap will guide you through building a Bitcoin-like blockchain from scra
 
 ## Recommended Learning Resources
 
+### Blockchain:
 1. **Bitcoin Whitepaper**: https://bitcoin.org/bitcoin.pdf
 2. **Mastering Bitcoin** (book by Andreas Antonopoulos)
 3. **Bitcoin Developer Guide**: https://bitcoin.org/en/developer-guide
 4. **Bitcoin Core Source Code**: https://github.com/bitcoin/bitcoin
 
+### Rust:
+1. **The Rust Book**: https://doc.rust-lang.org/book/ (Essential!)
+2. **Rust by Example**: https://doc.rust-lang.org/rust-by-example/
+3. **Rustlings**: https://github.com/rust-lang/rustlings (Interactive exercises)
+4. **Rust API Guidelines**: https://rust-lang.github.io/api-guidelines/
+
+### Rust Crates You'll Use:
+- `sha2` / `sha3`: Cryptographic hashing
+- `secp256k1`: ECDSA signatures (Bitcoin's curve)
+- `serde`: Serialization/deserialization
+- `tokio`: Async runtime for networking
+- `rusqlite` / `sled`: Database
+- `hex`: Hex encoding/decoding
+- `base58`: Address encoding
+
 ---
 
 ## Language Choice for Your Project
 
-- **Python**: Easier to learn, faster to prototype, good for understanding concepts ✅ **Recommended for learning**
-- **C++**: Closer to Bitcoin Core, better performance, more complex
-- **JavaScript/TypeScript**: Good for web-based demos
-- **Go/Rust**: Modern alternatives with good performance
+- **Rust**: ✅ **CHOSEN** - Modern, safe, and performant. Perfect for learning both blockchain and systems programming!
+  - Memory safety without garbage collection
+  - Excellent performance (comparable to C++)
+  - Great for concurrent/parallel operations (mining, network)
+  - Strong type system helps catch errors early
+  - Growing ecosystem for cryptography and blockchain
 
-**Recommendation**: Start with Python to learn concepts, then optionally rewrite in C++ if you want performance.
+**Why Rust for Blockchain?**
+- Performance: Fast enough for real blockchain operations
+- Safety: Prevents common bugs (memory leaks, data races)
+- Learning: You'll learn both blockchain AND modern systems programming
+- Industry: Many blockchain projects use Rust (Solana, Polkadot, etc.)
 
 ---
 
