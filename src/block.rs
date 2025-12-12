@@ -1,7 +1,6 @@
 use sha2::{Sha256, Digest};
-use std::time::{SystemTime, UNIX_EPOCH};
 use hex;
-use serde::{Serialize, Deserialize};
+use serde::{Serialize};
 
 
 pub struct Block {
@@ -21,9 +20,10 @@ struct BlockData {
 }
 
 impl Block {
-    pub fn new(index: u64, previous_hash: String, timestamp: u64, data: String, hash: String) -> Self {
-        let newHash = calculate_hash(index, previous_hash, timestamp, data, hash);
-        Block { index, previous_hash, timestamp, data, newHash }
+    pub fn new(index: u64, previous_hash: String, timestamp: u64, data: String) -> Self {
+        let mut block = Block { index, previous_hash, timestamp, data, hash: String::new()};
+        block.hash = block.calculate_hash();
+        return block;
     }
 
     pub fn calculate_hash(&self) -> String {
