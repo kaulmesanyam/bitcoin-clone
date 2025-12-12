@@ -1,6 +1,7 @@
 use sha2::{Sha256, Digest};
 use hex;
 use serde::{Serialize};
+use std::fmt;
 
 
 pub struct Block {
@@ -42,4 +43,17 @@ impl Block {
         
         hex::encode(hash)
     }
+}
+
+impl fmt::Display for Block {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(
+            f,
+            "Block #{}:\n  Previous Hash: {}\n  Hash: {}\n  Timestamp: {}\n  Data: {}",
+            self.index,
+            self.previous_hash,
+            self.hash,
+            self.timestamp,
+            self.data
+        )    }
 }
